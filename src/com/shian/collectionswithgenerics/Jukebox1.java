@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class Jukebox1 {
 
-	ArrayList<String> songList = new ArrayList<String>();
+	ArrayList<Song> songList = new ArrayList<Song>();
 	public static void main(String[] args) {
 		
 		Jukebox1 jukebox = new Jukebox1();
@@ -19,7 +19,7 @@ public class Jukebox1 {
 	
 	public void go() {
 		
-		//writeFile();
+		writeFile();
 		readFile();
 		System.out.println(songList);
 		Collections.sort(songList);
@@ -30,7 +30,13 @@ public class Jukebox1 {
 		
 		try {
 			FileWriter fileWriter = new FileWriter("song.txt");
-			fileWriter.write("Pink Moon/Nick Drake \nSomersault/Zero 7 \nShiva Moon/Prem Joshua \nCircles/BT \nDeep Channel/Afro Celts \nPassenger/Headmix \nListen/Tahiti 80 \n");
+			fileWriter.write("Pink Moon/Nick Drake/5/80 \n"
+					+ "Somersault/Zero 7/4/84 \n"
+					+ "Shiva Moon/Prem Joshua/6/120 \n"
+					+ "Circles/BT/5/110 \n"
+					+ "Deep Channel/Afro Celts/4/120 \n"
+					+ "Passenger/Headmix/4/100 \n"
+					+ "Listen/Tahiti 80/5/90 \n");
 			fileWriter.close();
 		} catch ( IOException e ) {
 			e.printStackTrace();
@@ -55,7 +61,8 @@ public class Jukebox1 {
 	private void addSong(String line) {
 		
 		String tokens[] = line.split("/");
-		songList.add(tokens[0]);
+		Song song = new Song( tokens[0], tokens[1], tokens[2], tokens[3]);
+		songList.add(song);
 		
 	}
 
